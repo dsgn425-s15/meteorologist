@@ -23,6 +23,7 @@ class GeocodingController < ApplicationController
     longitude = parsed_data["results"][0]["geometry"]["location"]["lng"]
 
 
+
     @latitude = latitude
 
     @longitude = longitude
