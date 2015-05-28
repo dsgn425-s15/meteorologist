@@ -10,7 +10,6 @@ class GeocodingController < ApplicationController
   def street_to_coords
     @street_address = params[:user_street_address]
     url_safe_street_address = URI.encode(@street_address)
-    google_url = "http://maps.googleapis.com/maps/api/geocode/json?address="
 
 
     # ==========================================================================
@@ -20,6 +19,7 @@ class GeocodingController < ApplicationController
     #   characters removed, is in the string url_safe_street_address.
     # ==========================================================================
 
+    google_url = "http://maps.googleapis.com/maps/api/geocode/json?address="
     parsed_data = JSON.parse(open(google_url+url_safe_street_address).read)
 
     @latitude = parsed_data["results"][0]["geometry"]["location"]["lat"]
