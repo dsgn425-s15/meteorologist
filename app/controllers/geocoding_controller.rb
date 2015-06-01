@@ -8,9 +8,9 @@ class GeocodingController < ApplicationController
 
   def street_to_coords
 
-    @street_address = params[:user_street_address]
+   require 'open-uri'
 
-    require 'open-uri'
+    @street_address = params[:user_street_address]
 
     url_safe_street_address = URI.encode(@street_address)
 
@@ -23,7 +23,7 @@ class GeocodingController < ApplicationController
 
     #open(url_safe_street_address)
 
-    raw_data = open(url_safe_street_address).read
+    raw_data = open("http://maps.googleapis.com/maps/api/geocode/json?address=#{url_safe_street_address}").read
 
     require 'json'
 
